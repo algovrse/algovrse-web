@@ -12,12 +12,19 @@ import { Button } from '@algovrse/components/ui/button';
 import { Separator } from '../ui/separator';
 import { SelectNavigationDropdown } from './dropdowns/select-navigation-dropdown';
 import { NavigationPages } from '@algovrse/lib/types';
+import { motion } from 'framer-motion';
 
 export const NavigationHeader = () => {
   const currentPage = NavigationPages.Home;
 
   return (
-    <div className="flex justify-center px-2 border-b border-border">
+    <motion.div
+      className="flex justify-center px-2 border-b border-border"
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: -100, opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <NavigationMenu className="h-navigation-header">
         <NavigationMenuList className="gap-10">
           <NavigationMenuItem>
@@ -47,6 +54,6 @@ export const NavigationHeader = () => {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
-    </div>
+    </motion.div>
   );
 };
