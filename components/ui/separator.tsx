@@ -1,43 +1,31 @@
-"use client";
+'use client';
 
-import * as React from "react";
-import * as SeparatorPrimitive from "@radix-ui/react-separator";
+import * as React from 'react';
+import * as SeparatorPrimitive from '@radix-ui/react-separator';
 
-import { cn } from "@algovrse/lib/utils";
+import { cn } from '@algovrse/lib/utils';
 
 export enum SEPARATOR_ORIENTATION {
-	HORIZONTAL = "horizontal",
-	VERTICAL = "vertical",
+  HORIZONTAL = 'horizontal',
+  VERTICAL = 'vertical',
 }
 
 const Separator = React.forwardRef<
-	React.ElementRef<typeof SeparatorPrimitive.Root>,
-	React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root>
->(
-	(
-		{
-			className,
-			orientation = SEPARATOR_ORIENTATION.HORIZONTAL,
-			decorative = true,
-			...props
-		},
-		ref
-	) => (
-		<SeparatorPrimitive.Root
-			ref={ref}
-			decorative={decorative}
-			orientation={orientation}
-			className={cn(
-				"shrink-0 bg-border",
-				orientation === SEPARATOR_ORIENTATION.HORIZONTAL
-					? "h-[1px] w-full"
-					: "h-full w-[1px]",
-				className
-			)}
-			{...props}
-		/>
-	)
-);
+  React.ElementRef<typeof SeparatorPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root>
+>(({ className, orientation = SEPARATOR_ORIENTATION.HORIZONTAL, decorative = true, ...props }, ref) => (
+  <SeparatorPrimitive.Root
+    ref={ref}
+    decorative={decorative}
+    orientation={orientation}
+    className={cn(
+      'shrink-0 bg-border',
+      orientation === SEPARATOR_ORIENTATION.HORIZONTAL ? 'h-[1px] w-full' : 'h-full w-[1px]',
+      className,
+    )}
+    {...props}
+  />
+));
 Separator.displayName = SeparatorPrimitive.Root.displayName;
 
 export { Separator };

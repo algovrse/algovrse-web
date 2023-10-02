@@ -1,3 +1,71 @@
 {
-  "extends": "next/core-web-vitals"
+  "root": true,
+  "plugins": ["react-hooks", "prettier", "unused-imports", "import", "simple-import-sort", "sort-keys-fix"],
+  "rules": {
+    "import/first": "error", // Ensures all imports are at the top of the file
+    "import/newline-after-import": "error", // Ensures there’s a newline after the imports
+    "import/no-duplicates": "error", // Merges import statements from the same file
+    "import/no-unresolved": [
+      "error",
+      {
+        "ignore": ["^@algovrse"]
+      }
+    ], // Prevents false positives for @algovrse packages
+    "import/order": "off", // Not compatible with simple-import-sort
+    "no-console": [
+      "error",
+      {
+        "allow": ["info", "warn", "error"]
+      }
+    ],
+    "no-unused-vars": "off", // Handled by @typescript-eslint/no-unused-vars
+    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/rules-of-hooks": "error",
+    "react/jsx-sort-props": [
+      "error",
+      {
+        "reservedFirst": true // Orders "key", "ref", etc. props first
+      }
+    ],
+    "react/prop-types": "off", // Don't need this with TS since we are already checking types
+    "simple-import-sort/exports": "error", // Auto-formats imports
+    "simple-import-sort/imports": "error", // Auto-formats exports
+    "sort-imports": "off", // Not compatible with simple-import-sort
+    "sort-keys-fix/sort-keys-fix": [
+      "error",
+      "asc",
+      {
+        "natural": true
+      }
+    ], // Sorts long object key lists alphabetically
+    "unused-imports/no-unused-imports": "error" // Removes unused imports automatically,
+  },
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended", // Makes ESLint and Prettier play nicely
+    "plugin:react/recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "next/core-web-vitals"
+  ],
+
+  "eslint-sort-keys-fix/sort-keys-fix": [
+    "error",
+    "asc",
+    { "caseSensitive": false, "ignorePattern": "tailwind.config.js" }
+  ],
+
+  "parserOptions": {
+    "ecmaVersion": 2021, // Allows for the parsing of modern ECMAScript features
+    "sourceType": "module", // Allows for the use of import/export syntax
+    "ecmaFeatures": {
+      "jsx": true // Allows for the parsing of JSX
+    }
+  },
+  "settings": {
+    "react": {
+      "version": "detect" // Tells eslint-plugin-react to automatically detect the version of React to use
+    }
+  }
 }
