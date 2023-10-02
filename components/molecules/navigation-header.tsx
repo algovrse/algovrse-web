@@ -39,9 +39,7 @@ export const NavigationHeader = () => {
 							legacyBehavior
 							passHref
 						>
-							<NavigationMenuLink className={navigationMenuTriggerStyle()}>
-								about
-							</NavigationMenuLink>
+							<NavigationMenuLink className="">about</NavigationMenuLink>
 						</Link>
 					</NavigationMenuItem>
 				</NavigationMenuList>

@@ -1,9 +1,13 @@
 import { ThemeProvider } from "@algovrse/components/theme-provider";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Cousine } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const baseFont = Cousine({
+	subsets: ["latin"],
+	weight: ["400", "700"],
+	style: ["italic", "normal"],
+});
 
 export const metadata: Metadata = {
 	title: "AlgoVrse",
@@ -18,7 +22,7 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en">
-			<body className={inter.className}>
+			<body className={baseFont.className}>
 				<ThemeProvider
 					attribute="class"
 					defaultTheme="system"
