@@ -10,6 +10,8 @@ import {
 	navigationMenuTriggerStyle,
 } from "@algovrse/components/ui/navigation-menu";
 import Link from "next/link";
+import { Button } from "@algovrse/components/ui/button";
+import { Separator } from "@algovrse/components/ui/separator";
 
 export const NavigationHeader = () => {
 	return (
@@ -22,9 +24,11 @@ export const NavigationHeader = () => {
 							legacyBehavior
 							passHref
 						>
-							<NavigationMenuLink className="">home</NavigationMenuLink>
+							<Button variant="navigation">home</Button>
 						</Link>
 					</NavigationMenuItem>
+
+					<Separator orientation="vertical" />
 
 					<NavigationMenuItem>
 						<NavigationMenuTrigger>Dropdown</NavigationMenuTrigger>
@@ -39,7 +43,7 @@ export const NavigationHeader = () => {
 							legacyBehavior
 							passHref
 						>
-							<NavigationMenuLink className="">about</NavigationMenuLink>
+							<Button variant="navigation">about</Button>
 						</Link>
 					</NavigationMenuItem>
 				</NavigationMenuList>
