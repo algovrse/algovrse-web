@@ -36,12 +36,12 @@ export const SelectNavigationDropdown = ({ currentPage }: SelectNavigationDropdo
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <Button variant="navigation" role="combobox" aria-expanded={open} className="justify-between p-0">
+        <Button variant="navigation" role="combobox" aria-expanded={open} className="justify-between items-center p-0">
           {value ? navigationOptions.find((option) => option.value === value)?.label : 'select'}
           {!open ? (
-            <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+            <ChevronDown size={20} strokeWidth={1.5} className="ml-2" />
           ) : (
-            <ChevronUp className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+            <ChevronUp size={20} strokeWidth={1.5} className="ml-2" />
           )}
         </Button>
       </PopoverTrigger>
