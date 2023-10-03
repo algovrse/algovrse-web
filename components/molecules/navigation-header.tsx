@@ -7,6 +7,9 @@ import { Separator } from '../ui/separator';
 import { SelectNavigationDropdown } from './dropdowns/select-navigation-dropdown';
 import { NavigationPages } from '@algovrse/lib/types';
 import { AnimatePresence, motion } from 'framer-motion';
+import { LayoutDashboard, Swords } from 'lucide-react';
+import Icon from '../icon';
+import { SelectThemeDropdown } from './dropdowns';
 
 export const NavigationHeader = () => {
   const currentPage = NavigationPages.Home;
@@ -14,40 +17,52 @@ export const NavigationHeader = () => {
   return (
     <AnimatePresence>
       <motion.div
-        className="flex justify-center px-2 border-b border-border"
+        className="w-full px-2 border-b border-border "
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: -100, opacity: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <NavigationMenu className="h-navigation-header">
-          <NavigationMenuList className="gap-10">
-            <NavigationMenuItem>
-              <Link href="/" legacyBehavior passHref>
-                <Button variant="navigation" className="h-navigation-header">
-                  home
-                </Button>
-              </Link>
-            </NavigationMenuItem>
+        <NavigationMenu className="w-full max-w-full h-navigation-header">
+          <motion.div className="w-full">
+            <NavigationMenuList className="gap-10 grow shrink-0 justify-between">
+              <NavigationMenuItem className="w-full justify-start">
+                {/* Dashboard Button */}
+                <Link href="/dashboard" legacyBehavior passHref>
+                  <Button variant="navigation" className="h-navigation-header">
+                    <Icon name={'layout-dashboard'} />
+                  </Button>
+                </Link>
+                {/* Challenges Button */}
+                <Link href="/challenges" legacyBehavior passHref>
+                  <Button variant="navigation" className="h-navigation-header">
+                    <Icon name={'swords'} />
+                  </Button>
+                </Link>
+              </NavigationMenuItem>
 
-            <Separator orientation="vertical" className="h-navigation-header" />
+              <Separator orientation="vertical" className="h-navigation-header" />
 
-            <NavigationMenuItem>
-              <NavigationMenuList>
-                algovrse / <SelectNavigationDropdown currentPage={currentPage} />
-              </NavigationMenuList>
-            </NavigationMenuItem>
+              <NavigationMenuItem>
+                <NavigationMenuList>
+                  <motion.div className="flex gap-2 justify-center items-center w-full min-w-[300px]">
+                    algovrse / <SelectNavigationDropdown currentPage={currentPage} />
+                  </motion.div>
+                </NavigationMenuList>
+              </NavigationMenuItem>
 
-            <Separator orientation="vertical" className="h-navigation-header" />
+              <Separator orientation="vertical" className="h-navigation-header" />
 
-            <NavigationMenuItem>
-              <Link href="/about" legacyBehavior passHref>
-                <Button variant="navigation" className="h-navigation-header">
-                  about
-                </Button>
-              </Link>
-            </NavigationMenuItem>
-          </NavigationMenuList>
+              <NavigationMenuItem className="w-full flex items-center justify-end">
+                <SelectThemeDropdown />
+                <Link href="/settings" legacyBehavior passHref>
+                  <Button variant="navigation" className="h-navigation-header">
+                    <Icon name={'settings'} />
+                  </Button>
+                </Link>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </motion.div>
         </NavigationMenu>
       </motion.div>
     </AnimatePresence>
