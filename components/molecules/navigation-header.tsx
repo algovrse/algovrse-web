@@ -12,7 +12,7 @@ import Icon from '../icon';
 import { SelectThemeDropdown } from './dropdowns';
 
 export const NavigationHeader = () => {
-  const currentPage = NavigationPages.Home;
+  const currentPage = NavigationPages.Dashboard;
 
   return (
     <AnimatePresence>

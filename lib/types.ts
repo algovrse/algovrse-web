@@ -1,5 +1,5 @@
 export enum NavigationPages {
-  Home = 'home',
+  Dashboard = 'dashboard',
   Visualizer = 'visualizer',
   Challenges = 'challenges',
 }

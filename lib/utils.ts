@@ -9,12 +9,12 @@ export const cn = (...inputs: ClassValue[]) => {
 export const navigationPageMap = (value: string): NavigationPages => {
   switch (value) {
     case 'home':
-      return NavigationPages.Home;
+      return NavigationPages.Dashboard;
     case 'visualizer':
       return NavigationPages.Visualizer;
     case 'challenges':
       return NavigationPages.Challenges;
     default:
-      return NavigationPages.Home;
+      return NavigationPages.Dashboard;
   }
 };

@@ -15,9 +15,8 @@ interface SelectNavigationDropdownProps {
 
 const navigationOptions = [
   {
-    value: NavigationPages.Home,
-    label: 'home',
-    hidden: true,
+    value: NavigationPages.Dashboard,
+    label: 'dashboard',
   },
   {
     value: NavigationPages.Visualizer,
@@ -54,7 +53,7 @@ export const SelectNavigationDropdown = ({ currentPage }: SelectNavigationDropdo
               <CommandItem
                 key={option.value}
                 onSelect={(currentValue) => {
-                  setValue(currentValue === value ? NavigationPages.Home : navigationPageMap(currentValue));
+                  setValue(currentValue === value ? NavigationPages.Dashboard : navigationPageMap(currentValue));
                   setOpen(false);
                 }}
               >
