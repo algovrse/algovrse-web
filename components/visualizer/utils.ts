@@ -1,12 +1,14 @@
 import { VisualizerActions } from './constants';
 
-export const generateSingleDimensionalArray = (ref: React.RefObject<HTMLDivElement>, barWidth = 20) => {
+export const generateSingleDimensionalArray = (ref: React.RefObject<HTMLDivElement>, barWidth = 25) => {
   const width = ref.current?.clientWidth || 0;
   const height = ref.current?.clientHeight || 0;
+
   const numBars = Math.floor(width / barWidth);
+  console.log(numBars, 'numBars');
   const arr = new Array(numBars).fill(0).map(() => Math.floor(Math.random() * height));
   arr.pop();
-  return arr;
+  return arr.map((value) => ({ value }));
 };
 
 export const getVisualizerActionColor = (d: any) => {

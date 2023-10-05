@@ -7,35 +7,24 @@ export interface SingleDimensionVisualizerProps {
 }
 
 export const SingleDimensionVisualizer = ({ data }: SingleDimensionVisualizerProps) => {
+  console.log('data', data);
   return (
-    <div className="h-[65vh]">
-      <ResponsiveBar
-        animate={true}
-        margin={{ top: 80, right: 0, bottom: 20, left: 0 }}
-        motionConfig="gentle"
-        data={data}
-        indexBy="value"
-        valueScale={{ type: 'linear' }}
-        indexScale={{ type: 'band', round: true }}
-        colors={getVisualizerActionColor}
-        borderColor={{
-          from: 'color',
-          modifiers: [['darker', 2]],
-        }}
-        enableGridX={false}
-        enableGridY={false}
-        gridYValues={5}
-        axisTop={{
-          tickSize: 0,
-          tickPadding: 60,
-        }}
-        axisRight={null}
-        axisBottom={null}
-        enableLabel={false}
-        role="application"
-        ariaLabel="algovrse: single dimension visualizer"
-        barAriaLabel={(e) => e.id + ': ' + e.formattedValue + ' in country: ' + e.indexValue}
-      />
-    </div>
+    <ResponsiveBar
+      animate={true}
+      motionConfig="gentle"
+      data={data}
+      indexBy="value"
+      valueScale={{ type: 'linear' }}
+      indexScale={{ type: 'band', round: true }}
+      colors={getVisualizerActionColor}
+      enableGridX={false}
+      enableGridY={false}
+      axisTop={null}
+      axisLeft={null}
+      axisRight={null}
+      axisBottom={null}
+      enableLabel={false}
+      ariaLabel="algovrse: single dimension visualizer"
+    />
   );
 };
