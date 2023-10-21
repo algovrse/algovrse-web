@@ -12,6 +12,6 @@ export interface ControlPanelConfig {
   label: string;
   step?: number;
   defaultValue?: number;
-  onChange?: (value: number) => void;
+  onChange?: () => void;
   id: string;
 }
