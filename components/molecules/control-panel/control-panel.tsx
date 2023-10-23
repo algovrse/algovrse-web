@@ -1,5 +1,6 @@
 import React from 'react';
 import { ControlPanelConfig } from './types';
+
 import { Button } from '@algovrse/components/ui/button';
 import { Slider } from '@algovrse/components/ui/slider';
 import { Toggle } from '@algovrse/components/ui/toggle';

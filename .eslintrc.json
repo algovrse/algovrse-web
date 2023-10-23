@@ -55,8 +55,7 @@
     "plugin:react/recommended",
     "plugin:import/recommended",
     "plugin:import/typescript",
-    "next/core-web-vitals",
-    "plugin:@typescript-eslint/eslint-plugin"
+    "next/core-web-vitals"
   ],
   "parserOptions": {
     "ecmaVersion": 2021, // Allows for the parsing of modern ECMAScript features
