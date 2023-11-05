@@ -3,4 +3,5 @@ export enum VisualizerActions {
   Compare = 'compare',
   Done = 'done',
   Select = 'select',
+  None = 'none',
 }

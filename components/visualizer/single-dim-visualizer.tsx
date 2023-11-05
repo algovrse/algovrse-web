@@ -1,30 +1,22 @@
-import { ResponsiveBar } from '@nivo/bar';
-import { useTheme } from 'next-themes';
+import { Bar } from '../ui/bar';
+import { VisualizerActions } from './constants';
 import { getVisualizerActionColor } from './utils';
 
+export interface SingleDimensionBarData {
+  value: number;
+  action: VisualizerActions;
+}
+
 export interface SingleDimensionVisualizerProps {
-  data: Record<string, string | number>[];
+  data: SingleDimensionBarData[];
 }
 
 export const SingleDimensionVisualizer = ({ data }: SingleDimensionVisualizerProps) => {
-  console.log('data', data);
   return (
-    <ResponsiveBar
-      animate={true}
-      motionConfig="gentle"
-      data={data}
-      indexBy="value"
-      valueScale={{ type: 'linear' }}
-      indexScale={{ type: 'band', round: true }}
-      colors={getVisualizerActionColor}
-      enableGridX={false}
-      enableGridY={false}
-      axisTop={null}
-      axisLeft={null}
-      axisRight={null}
-      axisBottom={null}
-      enableLabel={false}
-      ariaLabel="algovrse: single dimension visualizer"
-    />
+    <div className="flex gap-2 overflow-x-auto items-end">
+      {data.map((item, index) => (
+        <Bar key={`sorting-bar-${index}`} color={getVisualizerActionColor(item.action)} height={item.value} />
+      ))}
+    </div>
   );
 };
