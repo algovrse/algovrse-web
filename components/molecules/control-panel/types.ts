@@ -12,6 +12,6 @@ export interface ControlPanelConfig {
   label: string;
   step?: number;
   defaultValue?: number;
-  onChange?: () => void;
+  onChange?: (value: number | React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   id: string;
 }

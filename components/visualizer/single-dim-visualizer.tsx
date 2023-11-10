@@ -9,11 +9,12 @@ export interface SingleDimensionBarData {
 
 export interface SingleDimensionVisualizerProps {
   data: SingleDimensionBarData[];
+  gap?: number;
 }
 
-export const SingleDimensionVisualizer = ({ data }: SingleDimensionVisualizerProps) => {
+export const SingleDimensionVisualizer = ({ data, gap }: SingleDimensionVisualizerProps) => {
   return (
-    <div className="flex gap-2 overflow-x-auto items-end">
+    <div className="flex overflow-x-auto items-end h-full w-full" style={{ gap: `${gap}px` }}>
       {data.map((item, index) => (
         <Bar key={`sorting-bar-${index}`} color={getVisualizerActionColor(item.action)} height={item.value} />
       ))}

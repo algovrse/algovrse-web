@@ -4,13 +4,14 @@ import { SingleDimensionBarData } from './single-dim-visualizer';
 export const generateSingleDimensionalArray = (
   ref: React.RefObject<HTMLDivElement>,
   barWidth = 25,
+  gap = 5,
 ): SingleDimensionBarData[] => {
   const width = ref.current?.clientWidth ?? 0;
   const height = ref.current?.clientHeight ?? 0;
 
-  const numBars = Math.floor(width / barWidth);
+  const numBars = Math.floor(width / (barWidth + gap));
   const arr = new Array(numBars).fill(0).map(() => Math.floor(Math.random() * height + 5));
-  arr.pop();
+
   return arr.map((value) => ({ action: VisualizerActions.None, value: value }));
 };
 

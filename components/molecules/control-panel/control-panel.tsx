@@ -20,22 +20,33 @@ export const ControlPanel = ({ config }: ControlPanelProps) => {
         switch (type) {
           case 'button':
             return (
-              <Button onClick={props.onChange} variant="default">
-                {props.label ? props.label : 'Click Me'}
-              </Button>
+              <>
+                {props.onChange && (
+                  <Button onClick={props.onChange} variant="default">
+                    {props.label ? props.label : 'Click Me'}
+                  </Button>
+                )}
+              </>
             );
           case 'slider':
             return (
-              <div className="flex gap-1 items-center">
-                {props.label ?? ''}
-                <Slider
-                  className="min-w-[150px]"
-                  defaultValue={[props?.defaultValue ?? 2]}
-                  max={props?.maxValue ?? 10}
-                  min={props?.minValue ?? 0}
-                  step={props?.step ?? 1}
-                />
-              </div>
+              <>
+                {props.label && props.defaultValue && (
+                  <div className="flex gap-1 items-center">
+                    {props.label ?? ''}
+                    <Slider
+                      className="min-w-[150px]"
+                      defaultValue={[props?.defaultValue]}
+                      max={props?.maxValue ?? 10}
+                      min={props?.minValue ?? 0}
+                      onValueChange={(value) => {
+                        props?.onChange?.(value[0]);
+                      }}
+                      step={props?.step ?? 1}
+                    />
+                  </div>
+                )}
+              </>
             );
           case 'toggle':
             return <Toggle>{props.label ?? ''}</Toggle>;
