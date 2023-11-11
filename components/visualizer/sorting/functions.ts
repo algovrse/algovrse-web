@@ -17,14 +17,14 @@ export async function bubbleSort(
   while (i < len) {
     let currentArray = propsRef.current?.arrayData ?? [];
     while (j < len - i - 1) {
+      currentArray[j].action = VisualizerActions.Compare;
+      currentArray[j + 1].action = VisualizerActions.Compare;
+
+      // Checking for pause
       if (propsRef.current?.sortingStatus === VisualizerStatus.PAUSED) {
-        // access updated state value from ref
         await new Promise((resolve) => setTimeout(() => resolve(null), propsRef.current?.delay));
         continue;
       }
-
-      currentArray[j].action = VisualizerActions.Compare;
-      currentArray[j + 1].action = VisualizerActions.Compare;
 
       await delayFunction(propsRef.current?.delay ?? 0);
 
@@ -32,13 +32,15 @@ export async function bubbleSort(
         currentArray[j].action = VisualizerActions.Swap;
         currentArray[j + 1].action = VisualizerActions.Swap;
 
-        currentArray = await swap<SingleDimensionBarData>(
-          j,
-          j + 1,
-          currentArray,
-          setArray,
-          propsRef.current?.delay ?? 0,
-        );
+        currentArray = swap<SingleDimensionBarData>(j, j + 1, currentArray, setArray);
+      }
+
+      await delayFunction(propsRef.current?.delay ?? 0);
+
+      // Checking for pause
+      if (propsRef.current?.sortingStatus === VisualizerStatus.PAUSED) {
+        await new Promise((resolve) => setTimeout(() => resolve(null), propsRef.current?.delay));
+        continue;
       }
 
       currentArray[j].action = VisualizerActions.None;
