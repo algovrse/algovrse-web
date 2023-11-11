@@ -5,3 +5,11 @@ export enum VisualizerActions {
   Select = 'select',
   None = 'none',
 }
+
+export enum VisualizerStatus {
+  IDLE = 'IDLE',
+  RUNNING = 'RUNNING',
+  FINISHED = 'FINISHED',
+  PAUSED = 'PAUSED',
+  STOPPED = 'STOPPED',
+}

@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react';
+
 import { VisualizerActions } from './constants';
 import { SingleDimensionBarData } from './single-dim-visualizer';
 
@@ -27,4 +29,12 @@ export const getVisualizerActionColor = (action: VisualizerActions) => {
   } else {
     return '#5B30B5';
   }
+};
+
+export const swap = async <T>(idx1: number, idx2: number, arrayData: T[], setArray: Dispatch<SetStateAction<T[]>>) => {
+  const arrayCopy = [...arrayData];
+  const temp = arrayCopy[idx1];
+  arrayCopy[idx1] = arrayCopy[idx2];
+  arrayCopy[idx2] = temp;
+  setArray(arrayCopy);
 };
