@@ -31,10 +31,20 @@ export const getVisualizerActionColor = (action: VisualizerActions) => {
   }
 };
 
-export const swap = async <T>(idx1: number, idx2: number, arrayData: T[], setArray: Dispatch<SetStateAction<T[]>>) => {
+export const swap = async <T>(
+  idx1: number,
+  idx2: number,
+  arrayData: T[],
+  setArray: Dispatch<SetStateAction<T[]>>,
+  delayInMs: number,
+) => {
   const arrayCopy = [...arrayData];
   const temp = arrayCopy[idx1];
   arrayCopy[idx1] = arrayCopy[idx2];
   arrayCopy[idx2] = temp;
   setArray(arrayCopy);
+  await delayFunction(delayInMs);
+  return arrayCopy;
 };
+
+export const delayFunction = async (ms: number) => new Promise((res) => setTimeout(res, ms));

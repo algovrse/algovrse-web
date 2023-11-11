@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from 'react';
 
 import { VisualizerActions, VisualizerStatus } from '../constants';
 import { SingleDimensionBarData } from '../single-dim-visualizer';
-import { swap } from '../utils';
+import { delayFunction, swap } from '../utils';
 import { SortingFunctionProps } from './types';
 
 export async function bubbleSort(
@@ -15,6 +15,7 @@ export async function bubbleSort(
   let j = 0;
 
   while (i < len) {
+    let currentArray = propsRef.current?.arrayData ?? [];
     while (j < len - i - 1) {
       if (propsRef.current?.sortingStatus === VisualizerStatus.PAUSED) {
         // access updated state value from ref
@@ -22,16 +23,23 @@ export async function bubbleSort(
         continue;
       }
 
-      let currentArray = propsRef.current?.arrayData ?? [];
-
       currentArray[j].action = VisualizerActions.Compare;
       currentArray[j + 1].action = VisualizerActions.Compare;
 
-      if (currentArray[j].value > currentArray[j + 1].value) {
-        await swap<SingleDimensionBarData>(j, j + 1, currentArray, setArray);
-      }
+      await delayFunction(propsRef.current?.delay ?? 0);
 
-      currentArray = propsRef.current?.arrayData ?? [];
+      if (currentArray[j].value > currentArray[j + 1].value) {
+        currentArray[j].action = VisualizerActions.Swap;
+        currentArray[j + 1].action = VisualizerActions.Swap;
+
+        currentArray = await swap<SingleDimensionBarData>(
+          j,
+          j + 1,
+          currentArray,
+          setArray,
+          propsRef.current?.delay ?? 0,
+        );
+      }
 
       currentArray[j].action = VisualizerActions.None;
       currentArray[j + 1].action = VisualizerActions.None;
@@ -43,8 +51,7 @@ export async function bubbleSort(
     j = 0;
     i++;
 
-    const currentArray = propsRef.current?.arrayData ?? [];
-    currentArray[len - i - 1].action = VisualizerActions.Done;
+    currentArray[len - i].action = VisualizerActions.Done;
     setArray([...currentArray]);
   }
 }
