@@ -1,24 +1,25 @@
-import { ThemeProvider } from '@algovrse/components/theme-provider';
 import './globals.css';
+
+import { ThemeProvider } from '@algovrse/components/theme-provider';
 import type { Metadata } from 'next';
 import { Cousine } from 'next/font/google';
 
 const baseFont = Cousine({
+  style: ['italic', 'normal'],
   subsets: ['latin'],
   weight: ['400', '700'],
-  style: ['italic', 'normal'],
 });
 
 export const metadata: Metadata = {
-  title: 'AlgoVrse',
   description: 'Algovrse is a platform for sharing algorithm visualizations and learning algorithms.',
+  title: 'AlgoVrse',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { readonly children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className={baseFont.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="system" disableTransitionOnChange enableSystem>
           {children}
         </ThemeProvider>
       </body>
