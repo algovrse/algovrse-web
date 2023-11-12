@@ -1,15 +1,15 @@
 'use client';
 
-import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from '@algovrse/components/ui/navigation-menu';
-import Link from 'next/link';
 import { Button } from '@algovrse/components/ui/button';
-import { Separator } from '../ui/separator';
-import { SelectNavigationDropdown } from './dropdowns/select-navigation-dropdown';
+import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from '@algovrse/components/ui/navigation-menu';
 import { NavigationPages } from '@algovrse/lib/types';
 import { AnimatePresence, motion } from 'framer-motion';
-import { LayoutDashboard, Swords } from 'lucide-react';
+import Link from 'next/link';
+
 import Icon from '../icon';
+import { Separator } from '../ui/separator';
 import { SelectThemeDropdown } from './dropdowns';
+import { SelectNavigationDropdown } from './dropdowns/select-navigation-dropdown';
 
 export const NavigationHeader = () => {
   const currentPage = NavigationPages.Dashboard;
@@ -17,10 +17,10 @@ export const NavigationHeader = () => {
   return (
     <AnimatePresence>
       <motion.div
+        animate={{ opacity: 1, y: 0 }}
         className="w-full px-2 border-b border-border "
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: -100, opacity: 0 }}
+        exit={{ opacity: 0, y: -100 }}
+        initial={{ opacity: 0, y: -100 }}
         transition={{ duration: 0.5 }}
       >
         <NavigationMenu className="w-full max-w-full h-navigation-header">
@@ -29,19 +29,19 @@ export const NavigationHeader = () => {
               <NavigationMenuItem className="w-full justify-start">
                 {/* Dashboard Button */}
                 <Link href="/dashboard" legacyBehavior passHref>
-                  <Button variant="navigation" className="h-navigation-header">
+                  <Button className="h-navigation-header" variant="navigation">
                     <Icon name={'layout-dashboard'} />
                   </Button>
                 </Link>
                 {/* Challenges Button */}
                 <Link href="/challenges" legacyBehavior passHref>
-                  <Button variant="navigation" className="h-navigation-header">
+                  <Button className="h-navigation-header" variant="navigation">
                     <Icon name={'swords'} />
                   </Button>
                 </Link>
               </NavigationMenuItem>
 
-              <Separator orientation="vertical" className="h-navigation-header" />
+              <Separator className="h-navigation-header" orientation="vertical" />
 
               <NavigationMenuItem>
                 <NavigationMenuList>
@@ -51,12 +51,12 @@ export const NavigationHeader = () => {
                 </NavigationMenuList>
               </NavigationMenuItem>
 
-              <Separator orientation="vertical" className="h-navigation-header" />
+              <Separator className="h-navigation-header" orientation="vertical" />
 
               <NavigationMenuItem className="w-full flex items-center justify-end">
                 <SelectThemeDropdown />
                 <Link href="/settings" legacyBehavior passHref>
-                  <Button variant="navigation" className="h-navigation-header">
+                  <Button className="h-navigation-header" variant="navigation">
                     <Icon name={'settings'} />
                   </Button>
                 </Link>

@@ -1,13 +1,12 @@
 'use client';
 
-import * as React from 'react';
-import { Check, ChevronDown, ChevronUp } from 'lucide-react';
-
-import { cn, navigationPageMap } from '@algovrse/lib/utils';
 import { Button } from '@algovrse/components/ui/button';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from '@algovrse/components/ui/command';
 import { Popover, PopoverContent, PopoverTrigger } from '@algovrse/components/ui/popover';
 import { NavigationPages } from '@algovrse/lib/types';
+import { cn, navigationPageMap } from '@algovrse/lib/utils';
+import { Check, ChevronDown, ChevronUp } from 'lucide-react';
+import * as React from 'react';
 
 interface SelectNavigationDropdownProps {
   currentPage: NavigationPages;
@@ -15,16 +14,16 @@ interface SelectNavigationDropdownProps {
 
 const navigationOptions = [
   {
-    value: NavigationPages.Dashboard,
     label: 'dashboard',
+    value: NavigationPages.Dashboard,
   },
   {
-    value: NavigationPages.Visualizer,
     label: 'visualizer',
+    value: NavigationPages.Visualizer,
   },
   {
-    value: NavigationPages.Challenges,
     label: 'challenges',
+    value: NavigationPages.Challenges,
   },
 ];
 
@@ -33,14 +32,14 @@ export const SelectNavigationDropdown = ({ currentPage }: SelectNavigationDropdo
   const [value, setValue] = React.useState(currentPage);
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
+    <Popover onOpenChange={setOpen} open={open}>
       <PopoverTrigger asChild>
-        <Button variant="navigation" role="combobox" aria-expanded={open} className="justify-between items-center p-0">
+        <Button aria-expanded={open} className="justify-between items-center p-0" role="combobox" variant="navigation">
           {value ? navigationOptions.find((option) => option.value === value)?.label : 'select'}
           {!open ? (
-            <ChevronDown size={20} strokeWidth={1.5} className="ml-2" />
+            <ChevronDown className="ml-2" size={20} strokeWidth={1.5} />
           ) : (
-            <ChevronUp size={20} strokeWidth={1.5} className="ml-2" />
+            <ChevronUp className="ml-2" size={20} strokeWidth={1.5} />
           )}
         </Button>
       </PopoverTrigger>
